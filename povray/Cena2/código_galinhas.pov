@@ -3,7 +3,7 @@
 #include "colors.inc"      // Inclusão das cores padrão
 #include "woods.inc"       // Inclusão de texturas de madeira
 #include "metals.inc"      // Inclusão de texturas metálicas
-#include "obiekty.inc"     // Inclusão de objetos personalizados (arquivo extra)
+#include "objetos.inc"     // Inclusão de objetos personalizados (arquivo extra)
 
 // Declaração de variável para deslocamento que varia com o tempo (clock)
 #declare przemieszczenie = -clock*40;
