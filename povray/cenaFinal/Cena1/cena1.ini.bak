@@ -1,8 +1,9 @@
-Input_File_Name = "cena2.pov"
+Input_File_Name = "cena1.pov"
+Library_Path="..\Base"
 Height = 768
 Width = 1024
 Output_File_Type = N
-Output_File_Name = "Cena2"
+Output_File_Name = "Cena1"
 Quality = 8
 Antialias = on      
 

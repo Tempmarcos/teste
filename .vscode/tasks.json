@@ -1,0 +1,20 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Renderizar POV-Ray",
+            "type": "shell",
+            "command": "C:\\Program Files\\POV-Ray\\v3.7\\bin\\pvengine.exe\"",
+            "args": [
+                "/EXIT",
+                "/RENDER",
+                "${file}"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        }
+    ]
+}

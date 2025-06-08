@@ -6,7 +6,7 @@
 #include "baseI.inc"     // Inclusão de objetos personalizados (arquivo extra)
 
 // Declaração de variável para deslocamento que varia com o tempo (clock)
-#declare przemieszczenie = -clock*40;
+#declare deslocamento = -clock*40;
 
 
 // Céu esférico com gradiente e efeito de nuvens turbulentas
@@ -66,9 +66,9 @@ camera {
 
 
 // Macro para criar uma vaca
-#macro krowa()
+#macro vaca()
         // Olho da vaca
-        #local oko = union {
+        #local olho = union {
                 sphere {
                   <0,0,0>, 0.1
                   pigment {color White}      // Esclera branca
@@ -81,7 +81,7 @@ camera {
         }
         
         // Chifre da vaca
-        #local rog = union {
+        #local chifre = union {
                 blob {
                 threshold 0.01
                 cylinder {
@@ -101,7 +101,7 @@ camera {
         }
         
         // Focinho da vaca
-        #local pyszczek = union {
+        #local focinho = union {
                 cylinder {
                   <0,0,-0.3>
                   <0,0,0.3>
@@ -117,36 +117,36 @@ camera {
         }
         
         // Cabeça da vaca com textura de imagem
-        #local glowa = union {
+        #local cabeca = union {
                 sphere {
                   <0,0,0>,0.4
                   texture { pigment{image_map { png "lata_krowy.png"}}}   // Textura da vaca
                 }
                 object {
-                  oko
+                  olho
                   translate <-0.2,0.2,-0.35>   // Olho esquerdo
                 }
                 object {
-                  oko
+                  olho
                   translate <0.2,0.2,-0.35>    // Olho direito
                 }
                 object {
-                  pyszczek
+                  focinho
                   translate <0,0,-0.3>          // Focinho
                 }
                 object {
-                  rog
+                  chifre
                   translate <0.3,0.2,0>         // Chifre direito
                 }
                 object {
-                  rog
+                  chifre
                   rotate <0,180,0>
                   translate <-0.3,0.2,0>        // Chifre esquerdo
                 }
         }
         
         // Pescoço da vaca com textura da imagem
-        #local szyja = union {
+        #local pescoco = union {
                 cylinder {
                   <0,-0.2,0>
                   <0,0.2,0>
@@ -154,13 +154,13 @@ camera {
                   texture { pigment{image_map { png "lata_krowy.png"}}}
                 }
                 object {
-                  glowa
+                  cabeca
                   translate <0,0.35,0>
                 }
         }
         
         // Úbere da vaca
-        #local wymie = union {
+        #local teta = union {
                 cylinder {
                   <0,0,-0.2>
                   <0,0,0.2>
@@ -170,35 +170,35 @@ camera {
         }
         
         // Conjunto de úberes (quatro) posicionados e rotacionados
-        #local wymiona = union {
+        #local mamas = union {
                 sphere {
                   <0,0,0>,0.4
                   pigment {color  rgb <0.9,0.8,0.8>}
                 }
                 object {
-                  wymie
+                  teta
                   rotate <-5,10,0>
                   translate <-0.15,0.15,-0.35>
                 }                     
                 object {
-                  wymie
+                  teta
                   rotate <-5,10,0>
                   translate <-0.15,-0.15,-0.35>
                 }
                 object {
-                  wymie
+                  teta
                   rotate <-5,-10,0>
                   translate <0.15,0.15,-0.35>
                 }
                 object {
-                  wymie
+                  teta
                   rotate <-5,-10,0>
                   translate <0.15,-0.15,-0.35>
                 }
         }
         
         // Parte inferior da perna (canela) com textura da imagem
-        #local lydka = union {
+        #local canela = union {
                 cylinder {
                   <0,-0.25,0>,<0,0.25,0>,0.1
                   texture { pigment{image_map { png "lata_krowy.png"}}}
@@ -211,45 +211,45 @@ camera {
         }
         
         // Joelho da vaca com textura
-        #local kolano = union {
+        #local joelho = union {
                 sphere {
                   <0,0,0>, 0.11
                   texture { pigment{image_map { png "lata_krowy.png"}}}
                 }
                 object {
-                  lydka
+                  canela
                   translate <0,-0.25,0>
                   rotate <-20,0,0>
                 }
         }
         
         // Coxa da vaca
-        #local udo = union {
+        #local coxa = union {
                 cone {
                   <0,0.3,0>, 0.3
                   <0,-0.3,0> 0.1
                   texture { pigment{image_map { png "lata_krowy.png"}}}
                 }
                 object {
-                  kolano
+                  joelho
                   translate <0,-0.3,0>
                 }
         }
         
         // Perna completa
-        #local noga = union {
+        #local perna = union {
                 sphere {
                   <0,0,0>, 0.3
                   texture { pigment{image_map { png "lata_krowy.png"}}}                 
                 }
                 object {
-                  udo
+                  coxa
                   translate <0,-0.3,0>
                 }
         }
         
         // Antebraço da vaca
-        #local przedramie = union {
+        #local antebraco = union {
                 cylinder{
                   <0,-0.2,0>, <0,0.2,0>, 0.1
                   texture { pigment{image_map { png "lata_krowy.png"}}}
@@ -262,57 +262,57 @@ camera {
         }
         
         // Cotovelo da vaca
-        #local lokiec = union {
+        #local cotovelo = union {
                 sphere {
                   <0,0,0>, 0.12
                   texture { pigment{image_map { png "lata_krowy.png"}}}
                 }
                 object {
-                  przedramie
+                  antebraco
                   translate <0,-0.2,0>
                   rotate <45,0,0>
                 }
         }
         
         // Braço da vaca
-        #local ramie = union {
+        #local braco = union {
                 cylinder{
                   <0,-0.3,0>, <0,0.3,0>, 0.1
                   texture { pigment{image_map { png "lata_krowy.png"}}}
                 }
                 object {
-                  lokiec
+                  cotovelo
                   translate <0,-0.3,0>
                 }
         }
         
         // Corpo da vaca com todos os membros posicionados
-        #local korpus = union {
+        #local corpo = union {
                 sphere {
                   <0,0,0>, 1
                   scale <0.5,1,0.7>
                   texture { pigment{image_map { png "lata_krowy.png"}}}    // Corpo texturizado
                 }
                 object {
-                  szyja
+                  pescoco
                   translate <0, 1 ,0>
                 }
                 object {
-                  wymiona
+                  mamas
                   translate <0,-0.3,-0.5>
                 }
                 object {
-                  noga
+                  perna
                   rotate <45*sin(clock*360),0,0>   // Movimento da perna sincronizado com o tempo
                   translate <0.22,-0.8,0>
                 }
                 object {
-                  noga
+                  perna
                   rotate <-45*sin(clock*360),0,0>
                   translate <-0.22,-0.8,0>
                 }
                 object {
-                  ramie
+                  braco
                   translate <0,-0.2,0>
                   rotate <-45*sin(clock*360),0,0>
                   rotate <0,-10,0>
@@ -320,7 +320,7 @@ camera {
                   translate <0.3,0.8,0>
                 }
                 object {
-                  ramie
+                  braco
                   translate <0,-0.2,0>
                   rotate <45*sin(clock*360),0,0>
                   rotate <0,10,0>
@@ -329,7 +329,7 @@ camera {
                 }
         }
         
-        object {korpus}    // Desenha a vaca completa
+        object {corpo}    // Desenha a vaca completa
     
 #end
 
@@ -340,48 +340,48 @@ camera {
   ****************************************************************************************
 */
 
-// Instancia e posiciona três objetos do tipo 'kurka' (galinha)
-// Com deslocamento variável no eixo Z controlado pela variável 'przemieszczenie'
+// Instancia e posiciona três objetos do tipo 'galinha' (galinha)
+// Com deslocamento variável no eixo Z controlado pela variável 'deslocamento'
 
 object {
-        kurka()
+        galinha()
         //translate <-60, 5, 30>   // Comentado, posição original fixa
-        translate <-60, 5, 50 + przemieszczenie>  // Translada com deslocamento variável no eixo Z
+        translate <-60, 5, 50 + deslocamento>  // Translada com deslocamento variável no eixo Z
 }
 object {
-        kurka()
+        galinha()
         //translate <-60, 5, 30>
-        translate <-68, 5, 58 + przemieszczenie>
+        translate <-68, 5, 58 + deslocamento>
 }
 object {
-        kurka()
+        galinha()
         //translate <-60, 5, 30>
-        translate <-64, 5, 66 + przemieszczenie>
+        translate <-64, 5, 66 + deslocamento>
 }
 
 
 // ******  CENÁRIO  ******
 
 
-// Instancia e posiciona o objeto 'dom' (casa)
+// Instancia e posiciona o objeto 'casa' (casa)
 object {
-  dom(-10)            // Chama a função 'dom' com parâmetro -10 (possível altura ou outra característica)
+  casa(-10)            // Chama a função 'casa' com parâmetro -10 (possível altura ou outra característica)
   scale <10, 10, 10>  // Escala o objeto 10 vezes em todos os eixos
   rotate <0, -90, 0>  // Rotaciona o objeto em Y para alinhamento correto
   translate <-100, 20, 50>  // Posiciona no espaço 3D
 }
 
-// Instancia e posiciona o objeto 'drzewo' (árvore)
+// Instancia e posiciona o objeto 'arvore' (árvore)
 object {
-  drzewo()
+  arvore()
   scale <10, 10, 10>
   rotate <0, 20, 0>
   translate <-90, 6, 110>
 }
 
-// Instancia e posiciona o objeto 'grabie' (ancinho)
+// Instancia e posiciona o objeto 'ancinho' (ancinho)
 object {
-  grabie()
+  ancinho()
   scale <3, 3, 3>
   rotate <-90, 0, 0>    // Rotação em X
   rotate <0, -90, 0>    // Rotação em Y
@@ -389,16 +389,16 @@ object {
   translate <-73, 6, 35>
 }
 
-// Instancia e posiciona o objeto 'konewka' (regador)
+// Instancia e posiciona o objeto 'regador' (regador)
 object {
-  konewka()
+  regador()
   scale <11, 11, 11>
   translate <-74, 1, 42>
 }
 
-// Instancia e posiciona o objeto 'krowa' (vaca)
+// Instancia e posiciona o objeto 'vaca' (vaca)
 object {
-  krowa()
+  vaca()
   scale <3, 3, 3>
-  translate <-60, 6, 40 + przemieszczenie>  // Também com deslocamento variável no eixo Z
+  translate <-60, 6, 40 + deslocamento>  // Também com deslocamento variável no eixo Z
 }
